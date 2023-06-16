@@ -1,0 +1,16 @@
+<ROSETTASCRIPTS>
+    <FILTERS>
+    </FILTERS>
+    <RESIDUE_SELECTORS>
+        <Index name="res" resnums="22A,38A,81A,165A,285A,63A,133A,144A,246A"/>
+    </RESIDUE_SELECTORS>
+    <SIMPLE_METRICS>
+        <PTMPredictionMetric name="glycosylation_prediction" residue_selector="res" modification="NlinkedGlycosylation" />
+    </SIMPLE_METRICS>
+    <MOVERS>
+        <RunSimpleMetrics name="run" metrics="glycosylation_prediction" override="true"/>
+    </MOVERS>
+    <PROTOCOLS>
+        <Add mover_name="run"/>
+    </PROTOCOLS>
+</ROSETTASCRIPTS>

@@ -1,0 +1,42 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+        <ScoreFunction name="beta" weights="beta"/>
+    </SCOREFXNS>
+    <RESIDUE_SELECTORS>
+        <Index name="res" resnums="93A"/>
+    </RESIDUE_SELECTORS>
+    <SIMPLE_METRICS>
+        <PTMPredictionMetric name="phosphorylation_prediction" residue_selector="res" modification="Phosphorylation"/>
+        <ResidueSummaryMetric name="sum_phospho" action="mean" metric="phosphorylation_prediction"/>
+    </SIMPLE_METRICS>
+    <FILTERS>
+        <SimpleMetricFilter name="filter_phospho" metric="sum_phospho"  cutoff="0.5" comparison_type="gt"/>
+        <ScoreType name="total_score" threshold="0" scorefxn="beta"/>
+    </FILTERS>
+    <TASKOPERATIONS>
+        <InitializeFromCommandline name="ifcl"/>
+        <ReadResfile name="rrf" filename="design.resfile"/>
+    </TASKOPERATIONS>
+    <MOVERS>
+        <RunSimpleMetrics name="run_phospho_pred" metrics="phosphorylation_prediction" override="true"/>
+        <RandomMutation name="random_mutation" task_operations="ifcl,rrf"/>
+        <MinMover name="min" scorefxn="beta" bb="true" chi="true"/>
+
+        <ParsedProtocol name="mut_min">
+            <Add mover="random_mutation"/>
+            <Add mover="min"/>
+        </ParsedProtocol>
+
+        <GenericMonteCarlo name="MonteCarlo" mover_name="mut_min" filter_name="total_score" temperature="0.1" trials="50" preapply="false">
+            <Filters>
+                <AND filter_name="filter_phospho" temperature="0" rank="1" sample_type="high"/>
+            </Filters>
+        </GenericMonteCarlo>
+
+    </MOVERS>
+    <PROTOCOLS>
+        <Add mover="MonteCarlo"/>
+        <Add mover="run_phospho_pred"/>
+    </PROTOCOLS>
+    <OUTPUT scorefxn="beta"/>
+</ROSETTASCRIPTS>

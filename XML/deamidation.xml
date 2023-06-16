@@ -1,0 +1,20 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+        <ScoreFunction name="beta" weights="beta"/>
+    </SCOREFXNS>
+    <FILTERS>
+    </FILTERS>
+    <RESIDUE_SELECTORS>
+        <Index name="res" resnums="%%position%%"/>
+    </RESIDUE_SELECTORS>
+    <SIMPLE_METRICS>
+        <PTMPredictionMetric name="deamidation_prediction" residue_selector="res" modification="%%ptm%%"/>
+    </SIMPLE_METRICS>
+    <MOVERS>
+        <RunSimpleMetrics name="run" metrics="deamidation_prediction" override="true"/>
+    </MOVERS>
+    <PROTOCOLS>
+        <Add mover_name="run"/>
+    </PROTOCOLS>
+    <OUTPUT scorefxn="beta"/>
+</ROSETTASCRIPTS>

@@ -1,0 +1,1 @@
+$ROSETTA/main/source/bin/rosetta_scripts.tensorflow.linuxgccrelease -parser:protocol ./XML/deamidation_prediction.xml -l ./data/mut_N21.list -parser:script_vars position=21 ptm=Deamidation -out:file:score_only n21_deamidation_new_score.score -beta
