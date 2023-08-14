@@ -1,7 +1,7 @@
 # PTMPrediction
 Supplementary scripts for the paper "Combining machine learning with structure-based protein design to predict and engineer post-translational modifications of protein therapeutics"
 ## Rosetta documentation
-Documentation for the Rosetta SimpleMetric can be found at https://www.rosettacommons.org/docs/latest/PTMPredictionMetric.
+Documentation for the Rosetta SimpleMetric can be found at [https://www.rosettacommons.org/docs/latest/PTMPredictionMetric](https://new.rosettacommons.org/docs/latest/scripting_documentation/RosettaScripts/SimpleMetrics/simple_metric_pages/PTMPredictionMetric).
 ## Setup
 A conda build with the required libraries can be created with `build_conda.sh`.
 ## Training
