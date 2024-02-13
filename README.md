@@ -6,7 +6,7 @@ All models are included in Rosetta and can be used through the RosettaScripts XM
 ## Scripts for paper reproduction
 ### Setup
 A conda build with the required libraries can be created with `build_conda.sh`.
-For compiling Rosetta with Tensorflow, see information on this [page](https://new.rosettacommons.org/docs/wiki/build_documentation/Building-Rosetta-with-TensorFlow-and-PyTorch).
+For compiling Rosetta with Tensorflow, see information on this [page](https://new.rosettacommons.org/docs/latest/build_documentation/Building-Rosetta-with-TensorFlow-and-PyTorch).
 ### Training
 To train models from scratch use either the `training.py` or the `multi_training.py` scripts, e.g. `python ./training.py -p NlinkedGlycosylation`.
 For training the ptm_data.csv.gz found in `./data/` needs to be uncompressed first.
